@@ -1,0 +1,2320 @@
+---
+format: 
+  revealjs:
+    navigation-mode: vertical
+    slide-number: false
+    width: 1600
+    height: 900
+    logo: "images/revelo.png"
+    footer: "[home page](https://mchiapello.github.io/202304_REVELO_Torvergata/)"
+    css: ["css/theme.css", "css/custom.css"]
+    theme: simple
+    controls: true
+mainfont: "Times New Roman"
+editor: source
+filters:
+  - roughnotation
+editor_options: 
+  chunk_output_type: inline
+---
+
+##  {#TitleSlide data-menu-title="TitleSlide" background-image="images/back001.jpg" background-size="cover" background-opacity="0.3"}
+
+```{r setup, include=FALSE}
+library(fontawesome)
+library(tidyverse)
+library(quarto)
+library(gt)
+library(gtExtras)
+library(gtsummary)
+
+# font-family: 'Architects Daughter', cursive;
+# font-family: 'Julius Sans One', sans-serif;
+# font-family: 'Montserrat', san  s-serif;
+# font-family: 'Rock Salt', cursive;
+```
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Julius+Sans+One&family=Montserrat:wght@300&family=Rock+Salt&display=swap');
+</style>
+
+::: {style="position: absolute; left: 180px; top: 200px; height: 525px; width: 1500px; background-color: #69b1e9; padding: 20px; padding-left: 50px; border-radius: 5px;"}
+[Introduzione all'RNASeq]{style="font-size: 120px; font-weight: bold; line-height: 1em; margin: 0px; font-family: 'Architects Daughter', cursive;"}
+
+[Introduzione all'analisi RNASeq in R]{style="font-size: 40px;font-weight: bold;"}
+
+[Dipartimento di Biomedicina e Prevenzione]{style="font-size: 40px;font-weight: bold;"}
+
+<br> <br>
+
+[Marco Chiapello, Revelo Datalab]{style="font-size: 40px; font-weight: bold;"}
+
+[2023-03-31]{style="font-size: 30px;font-weight: bold;"}
+:::
+
+#  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[The history of sequencing]{.tit .p-span-center}
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Key moments for DNA sequencing:]{.subtit}
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Key moments for DNA sequencing:]{.subtit}
+
+<br>
+<br>
+
+::: {.p-img-center}
+
+```{r}
+#| echo: false
+#| layout-ncol: 1
+plot(qrcode::qr_code("https://forms.gle/t9vmzx6o2sedBNaB7"))
+```
+
+:::
+
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Key moments for DNA sequencing:]{.subtit}
+
+<br>
+
+[1953]{style="font-family: 'Rock Salt', cursive;font-size: 60px"}: [The structure of the DNA double helix was discovered]{style="font-size: 70px"}
+
+:::{.p-img-center}
+![](images/wcf.jpg)
+:::
+
+:::{.tcenter}
+James Watson, Francis Crick and Rosalind Franklin
+:::
+
+
+:::{.notes}
+The structure of the DNA double helix was discovered in 1953 by **James Watson and Francis Crick**. 
+
+**Rosalind Franklin** was an English X-ray crystallographer who also **contributed** a great deal and was central to the understanding of the molecular structures of DNA. 
+
+Watson and Crick received a **Nobel Prize in 1962**
+
+Franklin had passed away before her work was fully appreciated, and so she is now often referred to as ‘the dark lady of DNA’.
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Key moments for DNA sequencing:]{.subtit}
+
+<br>
+
+[1964]{style="font-family: 'Rock Salt', cursive;font-size: 60px"}: [Robert Holley, the first person to sequence a tRNA molecule]{style="font-size: 70px"}
+
+:::{.p-img-center}
+![](images/rwh.jpg){width=300}
+:::
+
+:::{.tcenter}
+Robert W. Holley
+:::
+
+
+:::{.notes}
+**Nobel Prize** in Physiology or Medicine in **1968** (with Har Gobind Khorana and Marshall Warren Nirenberg) for describing the structure of alanine transfer RNA, linking DNA and protein synthesis. 
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Key moments for DNA sequencing:]{.subtit}
+
+<br>
+
+[1972]{style="font-family: 'Rock Salt', cursive;font-size: 60px"}: [Paul Berg developed the first technology that permitted the isolation of defined DNA fragments]{style="font-size: 70px"}
+
+:::{.p-img-center}
+![](images/pb.jpg){width=300}
+:::
+
+
+
+:::{.tcenter}
+Paul Berg
+:::
+
+
+:::{.notes}
+Morto il 15 febbraio 2023
+
+leading to the **development of modern genetic engineering**. Before this, only phages or virus DNA was available for sequencing.
+
+**Nobel Prize** in Chemistry in 1980, along with Walter Gilbert and Frederick Sanger. 
+
+The award recognized their contributions to basic **research involving nucleic acids**, especially recombinant DNA.
+
+
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Key moments for DNA sequencing:]{.subtit}
+
+<br>
+
+[1973]{style="font-family: 'Rock Salt', cursive;font-size: 60px"}: [Walter Gilbert published the first nucleotide sequence]{style="font-size: 70px"}
+
+:::{.p-img-center}
+![](images/wg.jpg){width=300}
+:::
+
+:::{.tcenter}
+Walter Gilbert
+:::
+
+
+:::{.notes}
+consisting of 24 base pairs of the DNA lac operator.
+:::
+
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Key moments for DNA sequencing:]{.subtit}
+
+<br>
+
+[1973]{style="font-family: 'Rock Salt', cursive;font-size: 40px"}: [Walter Gilbert produced ‘DNA sequencing by chemical degradation’.]{style="font-size: 50px"}
+
+[1973]{style="font-family: 'Rock Salt', cursive;font-size: 40px"}: [Frederick Sanger was the first to sequence the complete DNA genome of a bacteriophage, called phi X174]{style="font-size: 50px"}
+
+:::{layout-ncol=2 .p-img-center}
+![](images/wg.jpg){width=300}
+
+![](images/fs.jpg){width=300}
+:::
+
+:::{.notes}
+Sanger  developed ‘DNA sequencing with chain-terminating inhibitors’.
+
+Frederick Sanger was the first to sequence the complete DNA genome of a bacteriophage, called phi X174. He also developed ‘DNA sequencing with chain-terminating inhibitors’.
+
+Gilbert, Frederick Sanger and Paul Berg were awarded the 1980 Nobel Prize in Chemistry
+
+Gilbert and Sanger were recognized for their pioneering work in devising methods for determining the sequence of nucleotides in a nucleic acid. 
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Key moments for DNA sequencing:]{.subtit}
+
+<br>
+
+[1983]{style="font-family: 'Rock Salt', cursive;font-size: 60px"}: [DNA amplification technique was developed]{style="font-size: 70px"}
+
+:::{.p-img-center}
+![](images/km.jpg){width=300}
+:::
+
+:::{.tcenter}
+Kary Mullis
+:::
+
+
+:::{.notes}
+1993 **Nobel Prize** for Chemistry in recognition of his role in the invention of the polymerase chain reaction (PCR) technique
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Key moments for DNA sequencing:]{.subtit}
+
+<br>
+
+[1986]{style="font-family: 'Rock Salt', cursive;font-size: 60px"}: [Leroy Hood announced the invention of the first semi-automated DNA sequencing machine ]{style="font-size: 70px"}
+
+:::{.p-img-center}
+![](images/lh.jpg){width=400}
+:::
+
+:::{.tcenter}
+Leroy Hood
+:::
+
+
+:::{.notes}
+Hood improved the existing Sanger method of enzymatic sequencing, which was becoming the laboratory standard
+
+fluorescent dyes
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Key moments for DNA sequencing:]{.subtit}
+
+<br>
+
+[1987]{style="font-family: 'Rock Salt', cursive;font-size: 60px"}: [Applied Biosystems produced the first automated sequencing machine, called ABI370.]{style="font-size: 70px"}
+
+:::{.p-img-center}
+![](images/373.jpg){width=600}
+:::
+
+:::{.tcenter}
+Applied Biosystems 370A Prototype Automated DNA Gene Sequencer,
+:::
+
+
+:::{.notes}
+ This was a significant advance for several scientific research projects, including mapping the human genome.
+
+The system relied on Sanger’s dideoxy sequencing method and fluorescent dyes
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Key moments for DNA sequencing:]{.subtit}
+
+<br>
+
+[1990]{style="font-family: 'Rock Salt', cursive;font-size: 60px"}: [The Human Genome Project formally began]{style="font-size: 70px"}
+
+:::{.p-img-center}
+![](images/hp.jpg){width=600}
+:::
+
+:::{.tcenter}
+Early days: a DNA-sequencing lab in 1994
+:::
+
+
+:::{.notes}
+It was expected to take around 15 years.
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Key moments for DNA sequencing:]{.subtit}
+
+<br>
+
+[1998]{style="font-family: 'Rock Salt', cursive;font-size: 60px"}: [‘Method of nucleic acid amplification’ was developed]{style="font-size: 70px"}
+
+:::{.p-img-center}
+![](images/impr.png){width=800}
+:::
+
+:::{.tcenter}
+[Patent: https://patents.google.com/patent/WO1998044151A1/en]{style="font-size: 30px"}
+:::
+
+
+:::{.notes}
+This was one of the major milestones in developing NGS technologies.
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Key moments for DNA sequencing:]{.subtit}
+
+<br>
+
+[2000]{style="font-family: 'Rock Salt', cursive;font-size: 60px"}: [A ‘rough draft’ of the human genome was finished by the Human Genome Project]{style="font-size: 70px"}
+
+:::{.p-img-center}
+![](images/hgc.jpeg){width=700}
+:::
+
+:::{.tcenter}
+[Wadman, M. ‘Rough draft’ of human genome wins researchers' backing. Nature 393, 399–400 (1998). https://doi.org/10.1038/30790]{style="font-size: 20px"}
+:::
+
+
+:::{.notes}
+
+:::
+
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Key moments for DNA sequencing:]{.subtit}
+
+<br>
+
+:::{.p-img-center}
+![](images/over.png)
+:::
+
+:::{.tcenter}
+[A timeline illustrating the milestones in major genome assembly achievements [Formenti et al., 2020]]{style="font-size: 30px"}
+:::
+
+
+:::{.notes}
+The background colour indicates what type of sequencing was used: Red represents early sequencing methods, yellow is Sanger-based shotgun methods, green is NGS and blue represents third-generation sequencing.
+:::
+
+
+#  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+[History of NGS platforms]{.tit .p-span-center}
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[First generation NGS]{.subtit}
+
+:::{.fragment .fade-in fragment-index=1}
+The technology was based on:
+
+- the chain-termination method
+
+- the chain-degradation method
+:::
+
+:::{.fragment .fade-in fragment-index=2}
+::: {.p-img-center}
+```{r}
+#| echo: false
+#| layout-ncol: 1
+plot(qrcode::qr_code("https://forms.gle/CqVFdQg8Rb8QC1W58"))
+```
+:::
+
+:::
+
+
+:::{.notes}
+- the chain-termination method developed by Sanger in 1975
+
+- the chain-degradation method invented by Gilbert in 1977
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Chain-degradation method]{.subtit}
+
+
+:::{.p-img-center}
+![](images/mg.png){width=500}
+:::
+
+:::{.notes}
+- Gilbert sequencing requires radioactive labeling at one 5′ end of the DNA fragment to be sequenced 
+
+- Chemical treatment generates breaks at a small proportion of one or two of the four nucleotide bases in each of four reactions (G, A+G, C, C+T)
+
+- with the improvement of the chain-termination method (see below), Gilbert sequencing has fallen out 
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Chain-termination method]{.subtit}
+
+<br>
+
+:::{.p-img-center}
+![](images/sanger1.png){width=1500}
+:::
+
+:::{.notes}
+- Dideoxynucleotide triphosphates (ddNTPs) lack the 3'-OH group of dNTPs that is essential for polymerase-mediated strand elongation in a PCR
+
+- radioactive labels, which were unstable, posed a health hazard, and required separate gels for each of the four DNA bases
+
+- The synthesis of the complementary DNA strand starts at the specific priming site and ends with the incorporation of a chain-terminating ddNTP that is randomly introduced instead of its corresponding dNTP
+
+- When these fragments are separated on a suitable gel matrix the sequence information can be obtained from the migration order of the bands (bottom to top)
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Chain-termination method]{.subtit}
+
+<br>
+
+:::{.p-img-center}
+![](images/sanger2.png){width=1500}
+:::
+
+:::{.notes}
+- Leroy Hood developed chemistry that used fluorescent dyes of different colors—one for each of the four DNA bases. This system of "color-coding" eliminated the need to run several reactions in overlapping gels
+
+- Hood integrated laser and computer technology, eliminating the tedious process of information-gathering by hand.
+
+- fluorescently labeled ddATP, ddCTP, ddGTP and ddUTP 
+
+- Subsequent fluorescent visualization of the product reveals the incorporated nucleotide and hence the sequence
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Chain-termination method]{.subtit}
+
+:::: {.columns .f40}
+
+::: {.column width="40%"}
+**Advantages**
+
+1. Gold standard method for accurate detection of single nucleotide variants and small insertions/deletions
+
+1. Cost effective where single samples need to be tested very urgently
+
+1. Less reliant on computational tools than NGS
+
+1. Longer fragments (up to approximately 1000bp) can be sequenced than in short read NGS
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="40%"}
+**Limitations**
+
+1. Limited throughput
+
+1. Not cost effective for sequencing many genes in parallel
+
+1. Can require a larger amount of input DNA than NGS
+
+1. Sanger methods can only sequence short pieces of DNA--about 300 to 1000 base pairs.
+
+1. The quality of a Sanger sequence is often not very good in the first 15 to 40 bases because that is where the primer binds.
+
+1. Sequence quality degrades after 700 to 900 bases
+:::
+
+::::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[First generation NGS]{.subtit}
+
+<br>
+
+The main advantages of first-generation NGS technologies are: 
+
+- Have a good overall sequence output 
+
+- A high accuracy of 99.99%
+
+- Preparing nucleic acids of the ideal size is relatively easy
+
+:::{.notes}
+Questi metodi non erano high througput!!
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Second generation NGS]{.subtit}
+
+<br>
+
+:::{.callout-important appearance="default"}
+[Second-generation NGS machines immediately began to drive the ‘genomics revolution’ by massively increased throughput by parallelizing many reactions]{style="font-size: 50px; font-family: 'Julius Sans One', sans-serif"}
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Second generation NGS]{.subtit}
+
+<br>
+
+Second-generation sequencing platforms:
+
+1. SOLiD: Sequencing by Oligonucleotide Ligation and Detection
+
+1. 454 GS FLX+: It uses pyrosequencing chemistry
+
+1. NextSeq 550Dx: Sequence by synthesis
+
+:::{.notes}
+1. SOLiD: Life Technologies in 2006
+
+1. 454: Roche in 2011
+
+1. NextSeq 550Dx: Illumina in 2017 
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Sequence by Ligation]{.subtit}
+
+<br>
+
+::::{.columns}
+
+:::{.column width="55%"}
+:::{.r-stack .p-img-center}
+![](images/lig1.png){width="900"}
+
+![](images/lig2.png){.fragment width="900"}
+:::
+:::
+
+:::{.column width="45%"}
+
+<br>
+
+:::{.fragment}
+- `r fontawesome::fa("plus-circle", fill = "green")` Considered to be one of the most accurate second-generation sequencing technologies
+
+- `r fontawesome::fa("minus-circle", fill = "red")` it can take up to seven days to complete a  single run and its short read length of 35 bp
+
+- `r fontawesome::fa("minus-circle", fill = "red")` Thermo Fisher Scientific shut down all SOLiD sequencing platforms in 2016
+:::
+:::
+::::
+
+:::{.notes}
+- Fluorescently labeled molecules called 8-mers
+
+- 8-mers are short ssDNA fragments where: 
+
+    - the first and second nucleotides are the next two nucleotides of the elongating DNA strand    
+    - the third-to-fifth nucleotides are degenerate     
+    - the sixth to eighth nucleotides are inosine bases, where the eighth inosine base is attached to a characteristic fluorescent dye
+
+A. The addition of primer and 8-mers, where if the first two nucleotides are complementary, DNA ligase ligates it to the primer.    
+B. Unbound 8-mers are washed away, and a laser excites the fluorescent tag on the 8-mer to emit a detectable light signal that is captured    
+C. A-B is repeated until the end of the DNA fragment.    
+D. The newly synthesized DNA strand is melted off, and A-C is repeated using a primer with a length of N-1, N-2, and N-3
+
+:::
+
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Pyrosequencing]{.subtit}
+
+::::{.columns}
+
+:::{.column width="45%"}
+:::{.p-img-center}
+![](images/pyro.png){width=800}
+:::
+
+:::
+
+:::{.column width="10%"}
+:::
+
+:::{.column width="45%"}
+<br>
+<br>
+
+:::{.fragment}
+- `r fontawesome::fa("plus-circle", fill = "green")` Large read lenght generation
+
+- `r fontawesome::fa("minus-circle", fill = "red")` High reagent cost
+
+- `r fontawesome::fa("minus-circle", fill = "red")` High error rate for homopolymers
+:::
+:::
+::::
+
+:::{.notes}
+Durante il sequenziamento vengono, di volta in volta, aggiunti dei nucleotidi. 
+
+Se il nucleotide viene incorporato viene rilasciato un pirofosfato 
+
+Poi utilizzato come substrato dall’enzima ATP solforilasi. 
+
+Quest’ultimo enzima catalizza la conversione del pirofosfato in ATP. 
+
+L’ATP a sua volta è il cofattore utilizzato dalla luciferasi per catalizzare la reazione che coinvolge la luciferina e che porta alla produzione di luce. 
+
+La luce generata, solo in seguito alla incorporazione del nucleotide corretto,viene rilevata grazie ad un detector.
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Sequence by synthesis]{.subtit}
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="1"}
+
+:::{.notes}
+Birthplace of high-throughput sequencing
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Sequence by synthesis - History]{.subtit}
+
+<br>
+
+[1997]{style="font-family: 'Rock Salt', cursive;font-size: 60px"}: [Evolution of a Novel Approach to Sequencing]{style="font-size: 70px"}
+
+:::{.p-img-center}
+![](images/bk.jpg){width=600}
+:::
+
+:::{.tcenter}
+Shankar Balasubramanian and David Klenerman
+:::
+
+
+:::{.notes}
+- Cambridge scientists Shankar Balasubramanian, Ph.D. and David Klenerman, Ph.D. were using fluorescently labeled nucleotides to observe the motion of a polymerase at the single molecule level as it synthesized DNA immobilized to a surface
+
+- during the summer of 1997 sparked ideas surrounding the use of clonal arrays and massively parallel sequencing of short reads using solid phase sequencing by reversible terminators
+
+- This technology was subsequently referred to as sequencing by synthesis technology, or SBS. This became the basis of an innovative DNA sequencing approach.
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Sequence by synthesis - History]{.subtit}
+
+<br>
+
+[1998]{style="font-family: 'Rock Salt', cursive;font-size: 60px"}: [Formation of Solexa]{style="font-size: 70px"}
+
+:::{.p-img-center}
+![](images/solexa.png){width=600}
+:::
+
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Sequence by synthesis - History]{.subtit}
+
+<br>
+
+[2004]{style="font-family: 'Rock Salt', cursive;font-size: 60px"}: [Molecular Clustering Technology Integration]{style="font-size: 70px"}
+
+:::{.p-img-center}
+![](images/polony.jpg){width=800}
+:::
+
+:::{.tcenter}
+Cluster generation (also known as “bridge amplification”)
+:::
+
+
+:::{.notes}
+- Solexa acquired molecular clustering technology from Manteia. 
+
+- The amplification of single DNA molecules into clusters enhanced the fidelity and accuracy of gene calling, while reducing the cost of the system optics through generation of a stronger signal.
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Sequence by synthesis - History]{.subtit}
+
+<br>
+
+[2005]{style="font-family: 'Rock Salt', cursive;font-size: 60px"}: [phiX-174 Genome Sequencing]{style="font-size: 70px"}
+
+:::{.fragment}
+[2005]{style="font-family: 'Rock Salt', cursive;font-size: 60px"}: [Integration of Lynx Therapeutics]{style="font-size: 70px"}
+:::
+
+:::{.fragment}
+[2007]{style="font-family: 'Rock Salt', cursive;font-size: 60px"}: [Illumina Acquires Solexa]{style="font-size: 70px"}
+
+::::{.columns}
+
+:::{.column width="45%"}
+:::{.p-img-center}
+![](images/ga.jpg){width=500}
+:::
+
+:::
+
+:::{.column width="10%"}
+:::
+
+:::{.column width="45%"}
+:::{.p-img-center}
+![](images/moore.png){width=500}
+:::
+
+:::
+
+::::
+
+:::
+
+
+:::{.notes}
+- The Solexa team sequenced the complete genome of the bacteriophage phiX-174, the same genome Sanger first sequenced using his method
+
+- However, the SBS technology generated significantly more sequencing data, delivering over 3 million bases from a single run.
+
+---
+
+- Solexa acquired instrumentation company Lynx Therapeutics, transforming the successful Solexa prototype into a commercial sequencing instrument: Genome Analyzer
+
+---
+
+- Solexa was acquired by Illumina
+
+- Next-generation sequencing (NGS) data output has increased at a rate that outpaces Moore's law, more than doubling each year
+:::
+
+
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Sequence by synthesis - Process]{.subtit}
+
+{{< video https://www.youtube.com/embed/fCd6B5HRaZ8 width="100%" height="85%" >}}
+
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Third generation NGS]{.subtit}
+
+<br>
+
+:::{.callout-important appearance="default"}
+[Third-generation methods allow direct sequencing of single DNA molecules]{style="font-size: 50px; font-family: 'Julius Sans One', sans-serif"}
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Third generation NGS]{.subtit}
+
+<br>
+
+Third-generation NGS platforms:
+
+1. Single-molecule real-time sequencing
+
+1. Nanopore sequencing
+
+:::{.notes}
+1. Pacific Biosciences in 2011
+
+1. Oxford Nanopore Technologies on 2014
+:::
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[SMRS]{.subtit}
+
+
+{{< video https://www.youtube.com/embed/_lD8JyAbwEo width="100%" height="85%" >}}
+
+##  {background-image="images/pant.jpg" background-size="cover" background-opacity="0.1"}
+
+[Nanopore sequencing]{.subtit}
+
+
+{{< video https://www.youtube.com/embed/CGWZvHIi3i0 width="100%" height="85%" >}}
+
+
+#  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+[RNASeq pipeline]{.tit .p-span-center}
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1" auto-animate=true}
+
+
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=6>Isolate total RNA) --> B(<font size=6>Enrich a specific type of RNA)
+      B --> C(<font size=6>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=6>Sequencing) --> E(<font size=6>Quantify expression)
+      E --> F(<font size=6>Differential Expression analysis)
+      F --> G(<font size=6>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  class A,B,C,D,E,F,G className;
+```
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1" auto-animate=true}
+
+
+::::{.columns}
+
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class B,C,D,E,F,G className;
+  class A classHigh;
+  linkStyle 1 stroke:red
+```
+:::
+
+:::{.column width="65%"}
+[Isolate total RNA]{.p-span-center}
+
+:::{.fragment .fade-in fragment-index=1}
+:::{.p-img-center}
+![](images/rnaE.png){width=500}
+:::
+
+:::
+
+:::
+
+::::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+::::{.columns}
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class A,B,C,D,E,F,G className;
+  linkStyle 0 stroke:red
+```
+:::
+:::{.column width="65%"}
+[Quality control]{.p-span-center}
+<br>
+
+:::{.incremental}
+1. RNA integrity is the major factor affecting the quality of sequencing data
+
+1. Protocols of RNA-Seq libraries require samples with high-quality RNA
+
+1. Prior to the construction of the libraries, it is necessary to assess RNA integrity number (RIN)
+
+1. The RIN measurement is based on a machine learning algorithm
+
+1. A higher RIN value indicates a higher degree of RNA integrity (range 1–10)
+
+1. `r fontawesome::fa("minus-circle", fill = "red")`RIN does not directly measure **mRNA integrity**, which is the main genetic material used in the construction of the libraries
+:::
+:::
+:::
+::::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+
+::::{.columns}
+
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class A,C,D,E,F,G className;
+  class B classHigh;
+```
+:::
+
+:::{.column width="65%"}
+[Enrich a specific type of RNA]{.p-span-center}
+
+::: {.incremental .f40}
+- mRNA
+
+- rRNAs and tRNAs (involved in mRNA translation)
+
+- Small nuclear RNAs (involved in splicing)
+
+- Small nucleolar RNAs (involved in the modification of rRNAs)
+
+- microRNA (regulate gene expression at the posttranscriptional level)
+
+- Long noncoding RNAs (chromatin remodelling, transcriptional control and posttranscriptional processing)
+:::
+
+
+:::
+
+:::
+
+::::
+
+:::{.notes}
+- mRNA molecules are the most studied RNA species because they encode proteins.
+
+- But recent advances in NGS technology have generated a focus on non-coding RNAs too, such as:
+:::
+
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+
+::::{.columns}
+
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class A,C,D,E,F,G className;
+  class B classHigh;
+```
+:::
+
+:::{.column width="65%"}
+[Enrich a specific type of RNA]{.p-span-center}
+
+<br>
+
+::: {.incremental .f40}
+Two options for mRNA enrichment 
+
+- **mRNA enrichment** – Selectively enriching for poly(A)-tailed transcripts
+
+- **RNA depletion** – Selectively depleting abundant/off-target transcripts 
+:::
+
+
+:::
+
+:::
+
+::::
+
+
+:::{.notes}
+3- RIN: has become a widely accepted standard for quality measurement
+:::
+
+
+
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+::::{.columns}
+
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class A,B,D,E,F,G className;
+  class C classHigh;
+```
+:::
+
+:::{.column width="65%"}
+[Prepare the RNA sequencing library]{.p-span-center}
+
+<br>
+
+```{r}
+#| echo: false
+#| layout-ncol: 1
+plot(qrcode::qr_code("https://forms.gle/jN6Fx7F5JSHFxb5u8"))
+```
+
+:::
+::::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+::::{.columns}
+
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class A,B,D,E,F,G className;
+  class C classHigh;
+```
+:::
+
+:::{.column width="65%"}
+[Prepare the RNA sequencing library]{.p-span-center}
+
+<br>
+
+:::{.callout-important}
+[A sequencing library is essentially a pool of RNA fragments with adapters attached]{style="font-size: 70px"}
+:::
+
+:::
+::::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+::::{.columns}
+
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class A,B,D,E,F,G className;
+  class C classHigh;
+```
+:::
+
+:::{.column width="65%"}
+[Prepare the RNA sequencing library]{.p-span-center}
+[Step 1]{.p-span-center .f20}
+
+<br>
+
+**Fragmentation**
+
+:::{incremental}
+1. Breaking of RNA strands into pieces
+:::
+:::
+::::
+
+:::{.notes}
+1- which can be done by using physical, chemical or enzymatic methods
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+::::{.columns}
+
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class A,B,D,E,F,G className;
+  class C classHigh;
+```
+:::
+
+:::{.column width="65%"}
+[Prepare the RNA sequencing library]{.p-span-center}
+[Step 2]{.p-span-center .f20}
+
+<br>
+
+**Attachment of adapters**
+
+:::{.incremental}
+1. Adapters are a short, chemically-synthesised oligonucleotide that can be attached to the ends of DNA molecules
+
+1. Act as barcodes to identify where each nucleotide was originally located
+:::
+
+:::{.fragment .fade-in}
+:::{.p-img-center}
+![](images/adapter.png){width=900}
+:::
+
+:::
+
+:::
+::::
+
+:::{.notes}
+1- which can be done by using physical, chemical or enzymatic methods
+:::
+
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+::::{.columns}
+
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class A,B,D,E,F,G className;
+  class C classHigh;
+```
+:::
+
+:::{.column width="65%"}
+[Prepare the RNA sequencing library]{.p-span-center}
+[Step 3]{.p-span-center .f20}
+
+<br>
+
+**Library quantification**
+
+:::{.callout-important}
+This is key to obtaining high quality NGS data
+:::
+
+:::{.incremental}
+1. It provides the number of nucleic acids ready to be sequenced in a sample
+
+1. It is important to try and obtain the highest complexity level as possible in an NGS library 
+
+1. Variety of techniques: UV absorption, intercalating dyes, hydrolysis probes and droplet digital emulsion PCR
+:::
+:::
+::::
+
+:::{.notes}
+2- because this will reduce the amount of bias. Library complexity refers to the number of unique DNA fragments present – in other words, the library should reflect the starting material as much as possible. Reductions in complexity usually result from PCR amplification during library preparation, which elevates the number of duplicate reads
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+::::{.columns}
+
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class A,B,C,E,F,G className;
+  class D classHigh;
+```
+:::
+
+:::{.column width="65%"}
+[Sequencing]{.p-span-center}
+[Step 1]{.p-span-center .f20}
+
+<br>
+
+**BCL to FASTQ conversion**
+
+:::{.incremental}
+1. Illumina sequencing technology uses cluster generation and sequencing by synthesis chemistry to sequence millions or billions of clusters on a flow cell
+
+1. During sequencing, for each cluster, base calls are made and stored in the form of individual base call (or BCL) files
+
+1. When sequencing completes, the base calls in the BCL files must be converted into sequence data
+
+:::
+:::
+::::
+
+:::{.notes}
+3- This process is called BCL to FASTQ conversion
+:::
+
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+::::{.columns}
+
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class A,B,C,E,F,G className;
+  class D classHigh;
+```
+:::
+
+:::{.column width="65%"}
+[Sequencing]{.p-span-center}
+[Step 1]{.p-span-center .f20}
+
+<br>
+
+**BCL to FASTQ conversion**
+
+<br>
+
+:::{.p-img-center}
+![](images/bc.png){width=800}
+:::
+:::
+::::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+::::{.columns}
+
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class A,B,C,E,F,G className;
+  class D classHigh;
+```
+:::
+
+:::{.column width="65%"}
+[Sequencing]{.p-span-center}
+[Step 2]{.p-span-center .f20}
+
+<br>
+
+**Pre-process**
+
+<br>
+
+:::{.incremental}
+1. Assess the quality of sequencing data
+
+1. Demultiplex by index or barcode 
+
+1. Remove adapter sequences
+
+1. Trim reads by quality
+
+1. Discard reads by quality/ambiguity
+
+:::
+
+:::{.notes}
+2- (it is usually done in the sequencing facility)
+:::
+
+:::
+::::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+::::{.columns}
+
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class A,B,C,E,F,G className;
+  class D classHigh;
+```
+:::
+
+:::{.column width="65%"}
+[Sequencing]{.p-span-center}
+[Step 3]{.p-span-center .f20}
+
+<br>
+
+**Read mapping**
+
+<br>
+
+:::{.incremental}
+
+1. Mapping reads to a reference genome or transcriptome
+
+1. We need to retrieve a reference genome or transcriptome
+
+    - Download from public databases
+ 
+    - Create *De Novo*
+:::
+:::
+::::
+
+:::{.notes}
+We are not exploring the *De Novo* option in this course
+:::
+
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+::::{.columns}
+
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class A,B,C,E,F,G className;
+  class D classHigh;
+```
+:::
+
+:::{.column width="65%"}
+[Sequencing]{.p-span-center}
+[Step 4]{.p-span-center .f20}
+
+<br>
+
+**Read mapping**
+
+<br>
+
+:::{.incremental}
+
+1. Fast (splice-unaware) aligners to a reference transcriptome
+
+1. Splice-aware aligners to a reference genome
+
+1. Quasi-mappers (alignment-free mappers) to a reference transcriptome
+:::
+:::
+::::
+
+:::{.notes}
+1. Bowtie2, bwa, gem
+
+1. STAR
+
+1. Salmon, Kallisto and Sailfish
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+::::{.columns}
+
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class A,B,C,D,F,G className;
+  class E classHigh;
+```
+:::
+
+:::{.column width="65%"}
+[Quantify expression]{.p-span-center}
+
+<br>
+
+**Normalized expression units**
+
+<br>
+
+:::{.incremental}
+1. Normalized gene expression units provide consistent and comparable measures to compare and visualize gene expression counts within and across samples
+
+1. Normalized gene expression units are necessary to remove technical biases 
+
+:::
+:::
+::::
+
+:::{.notes}
+2- such as sequencing depth, RNA composition, and gene length in sequenced data
+
+    - more sequencing depth produces more read count for a gene expressed at the same level
+
+    - differences in gene length generate unequal reads count for genes expressed at the same level (longer the gene more the read count)
+
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+::::{.columns}
+
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class A,B,C,D,F,G className;
+  class E classHigh;
+```
+:::
+
+:::{.column width="65%"}
+[Quantify expression]{.p-span-center}
+[Normalized expression units]{.p-span-center .f20}
+
+<br>
+
+**Reads per million**
+
+<br>
+
+:::{.callout-tip}
+## Definition
+RPM (also known as CPM) is a basic gene expression unit that normalizes only for sequencing depth (depth-normalized counts)
+:::
+
+:::{.p-img-center}
+![](images/rmp1.png){width=800}
+::: 
+
+<br>
+
+:::{.fragment .fade-in fragment-index=1}
+:::{.p-img-center}
+![](images/rmp2.png){width=800}
+:::
+:::
+
+:::
+::::
+
+:::{.notes}
+- RPM or CPM (Reads per million mapped reads or Counts per million mapped reads)
+
+- RPM is calculated by dividing the mapped reads count by a per million scaling factor of total mapped reads
+
+- **For example**, You have sequenced one library with 5 million(M) reads. Among them, total 4 M matched to the genome sequence and 5000 reads matched to a given gene
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+::::{.columns}
+
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class A,B,C,D,F,G className;
+  class E classHigh;
+```
+:::
+
+:::{.column width="65%"}
+[Quantify expression]{.p-span-center}
+[Normalized expression units]{.p-span-center .f20}
+
+<br>
+
+**Reads per kilo base of transcript per million mapped reads**
+
+<br>
+
+:::{.callout-tip}
+## Definition
+RPKM is normalized to correct the gene (transcript) lengths and library sizes (sequencing depth)
+:::
+
+:::{.p-img-center}
+![](images/rpkm1.png){width=800}
+::: 
+
+<br>
+
+:::{.fragment .fade-in fragment-index=1}
+:::{.p-img-center}
+![](images/rpkm2.png){width=800}
+:::
+:::
+
+:::
+::::
+
+:::{.notes}
+- RPKM is most useful for comparing gene expression values within a sample, and it is not recommended for performing differential gene expression analysis (sample-to-sample comparisons)
+
+- **RPKM calculation example**: You have sequenced one library with 5 M reads. Among them, total 4 M matched to the genome sequence and 5000 reads matched to a given gene with a length of 2000 bp
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+::::{.columns}
+
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class A,B,C,D,F,G className;
+  class E classHigh;
+```
+:::
+
+:::{.column width="65%"}
+[Quantify expression]{.p-span-center}
+[Normalized expression units]{.p-span-center .f20}
+
+<br>
+
+**Transcripts per million**
+
+<br>
+
+:::{.callout-tip}
+## Definition
+TPM is a measurement of the proportion of transcripts in your pool of RNA 
+:::
+
+:::{.p-img-center}
+![](images/tpm1.png){width=800}
+::: 
+
+<br>
+
+:::{.fragment .fade-in fragment-index=1}
+
+:::{.p-img-center}
+![](images/tpm2.png){width=800}
+:::
+:::
+
+:::
+::::
+
+:::{.notes}
+- TPM is proportional to RPKM
+
+- In contrast to RPKM, the TPM average is constant and is proportional to the relative RNA molar concentration
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+::::{.columns}
+
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class A,B,C,D,E,G className;
+  class F classHigh;
+```
+:::
+
+:::{.column width="65%"}
+[Differentially expression analysis]{.p-span-center}
+
+<br>
+
+:::{.callout-important .f40}
+- A basic task in the analysis of count data from RNA-seq is the detection of differentially expressed genes.
+
+- It determines genotypical differences between two or more conditions of cells, in support of specific hypothesis-driven studies.
+
+- The integration and the visualized representation of DGE result analysis functions can facilitate the downstream studies.
+:::
+
+:::{.p-img-center}
+![](images/dge1.png){width=400}
+::: 
+
+:::
+::::
+
+:::{.notes}
+:::
+
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+::::{.columns}
+
+:::{.column width="35%"}
+```{mermaid}
+flowchart TB
+  subgraph vitro [In vitro]
+    direction TB
+      A(<font size=3>Isolate total RNA) --> B(<font size=3>Enrich a specific type of RNA)
+      B --> C(<font size=3>Prepare the RNA sequencing library)
+  end
+  subgraph silico [In silico]
+    direction TB
+      D(<font size=3>Sequencing) --> E(<font size=3>Quantify expression)
+      E --> F(<font size=3>Differential Expression analysis)
+      F --> G(<font size=3>Biological conclusions)
+  end
+  vitro --> silico
+  classDef className fill:#D1D1D1,stroke:#333,stroke-width:1px
+  classDef classHigh fill:#E3BE34,stroke:#333,stroke-width:4px
+  class A,B,C,D,E,F className;
+  class G classHigh;
+```
+:::
+
+:::{.column width="65%"}
+[Biological conclusion]{.p-span-center}
+
+:::{.p-img-center}
+![](images/deg.png){width=900}
+::: 
+
+:::
+::::
+
+:::{.notes}
+- To confirm the expression profile of genes in RNA-Seq results =>  Reverse transcription-quantitative PCR (RT-qPCR)
+:::
+
+
+
+
+
+#  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+[How many samples do I need?]{.tit .p-span-center}
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1" auto-animate="true"}
+
+::: {style="font-size: 80px; text-align: center"}
+Power analysis
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1" auto-animate="true"}
+
+::: {style="font-size: 80px; text-align: center"}
+Power analysis
+:::
+
+-   **Type I error**: controlled by the α value. Often set to 0.01 (1%) or 0.001 (0.1%) in RNA-seq experiments.
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1" auto-animate="true"}
+
+::: {style="font-size: 80px; text-align: center"}
+Power analysis
+:::
+
+-   **Type I error**: controlled by the α value. Often set to 0.01 (1%) or 0.001 (0.1%) in RNA-seq experiments.
+
+-   **Type II error**: controlled by the β value. (1−β) will give you the power of your analysis. Should be set to 70 or 80% to detect 70 or 80% of the differentially expressed genes. The number of biological replicates might be hard to reach in practice for RNA-seq experiments.
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1" auto-animate="true"}
+
+::: {style="font-size: 80px; text-align: center"}
+Power analysis
+:::
+
+-   **Type I error**: controlled by the α value. Often set to 0.01 (1%) or 0.001 (0.1%) in RNA-seq experiments.
+
+-   **Type II error**: controlled by the β value. (1−β) will give you the power of your analysis. Should be set to 70 or 80% to detect 70 or 80% of the differentially expressed genes. The number of biological replicates might be hard to reach in practice for RNA-seq experiments.
+
+-   **Effect size**: this is a parameter you will set. For instance, if you want to investigate genes that differ between treatments with a difference of their mean of 2 then the effect size is equal to 2.
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1" auto-animate="true"}
+
+::: {style="font-size: 80px; text-align: center"}
+Power analysis
+:::
+
+-   **Type I error**: controlled by the α value. Often set to 0.01 (1%) or 0.001 (0.1%) in RNA-seq experiments.
+
+-   **Type II error**: controlled by the β value. (1−β) will give you the power of your analysis. Should be set to 70 or 80% to detect 70 or 80% of the differentially expressed genes. The number of biological replicates might be hard to reach in practice for RNA-seq experiments.
+
+-   **Effect size**: this is a parameter you will set. For instance, if you want to investigate genes that differ between treatments with a difference of their mean of 2 then the effect size is equal to 2.
+
+-   **Sample size**: the quantity you want to calculate.
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+#### Let's say we want:
+
+-   Type I error of 5%. (α=0.05)
+-   Type II error of 0.2. (Power=1−β=0.8)
+-   Effect size of 2. (d=2)
+
+::: {.fragment .fade-in}
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "1|3|4|5|1-7"
+library("pwr")
+
+pwr.t.test(d = 2,
+           power = .8,
+           sig.level = .05,
+           type = "two.sample",
+           alternative = "two.sided")
+```
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+#### Let's say we want:
+
+-   Effect size of 1. (d=1)
+
+::: {.fragment .fade-in}
+```{r}
+#| echo: TRUE
+library("pwr")
+
+pwr.t.test(d = 1,
+           power = .8,
+           sig.level = .05,
+           type = "two.sample",
+           alternative = "two.sided")
+```
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+[Power analysis for RNA-seq]{.tit .p-span-center}
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1" auto-animate="true"}
+
+::: {style="font-size: 60px; text-align:center"}
+**General Considerations**
+:::
+
+<br>
+
+::: {style="font-size: 60px"}
+RNA-seq experiments often suffer from a low statistical power
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1" auto-animate="true"}
+
+::: {style="font-size: 60px; text-align:center"}
+**General Considerations**
+:::
+
+<br>
+
+::: {style="font-size: 60px"}
+RNA-seq experiments often suffer from a low statistical power
+:::
+
+<br>
+
+::: {style="font-size: 60px"}
+Low power can lead to a lack of reproducibility of the research findings
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1" auto-animate="true"}
+
+::: {style="font-size: 60px; text-align:center"}
+**General Considerations**
+:::
+
+<br>
+
+::: {style="font-size: 60px"}
+RNA-seq experiments often suffer from a low statistical power
+:::
+
+<br>
+
+::: {style="font-size: 60px"}
+Low power can lead to a lack of reproducibility of the research findings
+:::
+
+<br>
+
+::: {style="font-size: 60px"}
+The number of replicates is one of the critical parameter related to the power of an analysis
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+[Replicates]{.tit .p-span-center}
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+![Klaus B., EMBO J (2015) 34: 2727-2730](images/image-259602676.png)
+
+::: notes
+-   Technical replicates: use the same biological sample to repeat the technical or experimental steps in order to accurately measure technical variation and remove it during analysis.
+
+-   Biological replicates use different biological samples of the same condition to measure the biological variation between samples
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+[Do we need technical replicates?]{.tit .p-span-center}
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1" auto-animate="true"}
+
+[No]{.tit .p-span-center}
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1" auto-animate="true"}
+
+[No]{.tit .p-span-center}
+
+::: callout-important
+[With the current RNA-Seq technologies, technical variation is much lower than biological variation and]{.f40}[technical replicates are unneccessary]{.rn}
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+[Do we need biological replicates?]{.tit .p-span-center}
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1" auto-animate="true"}
+
+[YES]{.tit .p-span-center}
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1" auto-animate="true"}
+
+[YES]{.tit .p-span-center}
+
+::: callout-important
+[Biological replicates are absolutely essential for [differential expression analysis]{.rn}]{.f40}
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1" auto-animate="true"}
+
+[YES]{.tit .p-span-center}
+
+::: callout-important
+[For differential expression analysis, the more biological replicates, the better the estimates of biological variation and the more precise our estimates of the mean expression levels]{.f40}
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+::: {.f40 .tcenter .fragment}
+Biological replicates are of greater importance than sequencing depth
+:::
+
+![Liu, Y., et al., Bioinformatics (2014) 30(3): 301--304](images/image-154795781.png){width="auto" height="700"}
+
+:::{.notes}
+[Cosa vedete? Come interpretate il grafico]{style="font-size: 50px; color: red"}
+
+Note that an increase in the number of replicates tends to return more DE genes than increasing the sequencing depth. 
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+:::{style="font-size: 60px; text-align: center"}
+**Replicates are almost always preferred to greater sequencing depth for bulk RNA-Seq**
+:::
+
+<br>
+
+:::{.callout-important}
+However, guidelines depend on the experiment performed and the desired analysis.
+:::
+
+:::{.fragment .fade-in fragment-index=1}
+Here some examples: 
+:::
+
+:::{.fragment .fade-in fragment-index=1}
+:::{style="font-size: 30px"}
+**General gene-level differential expression**    
+    - ENCODE guidelines suggest 30 million SE reads per sample (stranded).    
+    - 15 million reads per sample is often sufficient, if there are a good number of replicates (>3).    
+    - Spend money on more biological replicates, if possible.    
+    - Generally recommended to have read length >= 50 bp    
+:::
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+:::{style="font-size: 60px; text-align: center"}
+**Replicates are almost always preferred to greater sequencing depth for bulk RNA-Seq**
+:::
+
+<br>
+
+:::{.callout-important}
+However, guidelines depend on the experiment performed and the desired analysis.
+:::
+
+Here some examples: 
+
+:::{style="font-size: 30px"}
+**Gene-level differential expression with detection of lowly-expressed genes**     
+    - Similarly benefits from replicates more than sequencing depth.     
+    - Sequence deeper with at least 30-60 million reads depending on level of expression (start with 30 million with a good number of replicates).
+    - Generally recommended to have read length >= 50 bp     
+:::
+
+##  {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1"}
+
+:::{style="font-size: 60px; text-align: center"}
+**Replicates are almost always preferred to greater sequencing depth for bulk RNA-Seq**
+:::
+
+<br>
+
+:::{.callout-important}
+However, guidelines depend on the experiment performed and the desired analysis.
+:::
+
+Here some examples: 
+
+:::{style="font-size: 30px"}
+**Isoform-level differential expression**    
+    - Of known isoforms, suggested to have a depth of at least 30 million reads per sample and paired-end reads.    
+    - Of novel isoforms should have more depth (> 60 million reads per sample).    
+    - Choose biological replicates over paired/deeper sequencing.    
+    - Generally recommended to have read length >= 50 bp, but longer is better as the reads will be more likely to cross exon junctions    
+    - Perform careful QC of RNA quality. Be careful to use high quality preparation methods and restrict analysis to high quality RIN # samples.    
+:::
+
+
+## {background-image="images/stat001.jpg" background-size="cover" background-opacity="0.1" auto-animtate="true"}
+
+:::{style="font-size: 60px; text-align: center"}
+**Principles of a good experimental design**
+:::
+
+:::{.fragment .fade-in fragment-index=1}
+**Randomization** 
+
+This should remove undesired and sometimes unknown bias coming from an unidentified source of variation (e.g. different temperatures in the same greehouse).
+:::
+
+:::{.fragment .fade-in fragment-index=2}
+
+**Replication** 
+
+By repeating the same minimal experiment more than once, you can estimate the error due to the experimenter manipulation and your treatment effect.
+
+:::
+
+:::{.fragment .fade-in fragment-index=3}
+
+**Blocking** 
+
+Can help to reduce variability unexplained in one’s model. If your group consist of male and female individual, there is a chance that they will not respond in the same way to a given treatment. Therefore, “sex” should be a blocking factor in this case. 
+
+:::
+
+#  {background-image="images/app001.jpg" background-size="cover" background-opacity="0.2"}
+
+[Applications]{.tit .p-span-center}
+
+
+##  {background-image="images/app001.jpg" background-size="cover" background-opacity="0.2"}
+
+::: {style="font-size: 80px; text-align: center"}
+Diagnostics and disease profiling
+:::
+
+<br>
+<br>
+
+:::{.fragment .fade-down}
+::: {style="font-size: 60px"}
+
+1. Transcriptional start sites
+
+1. Uncovered alternative promoter usage
+
+1. Novel splicing alterations
+:::
+:::
+
+::: footer
+Lowe et al., 2017
+:::
+
+:::{.notes}
+RNA-Seq approaches have allowed for the large-scale identification of
+:::
+
+##  {background-image="images/app001.jpg" background-size="cover" background-opacity="0.2"}
+
+::: {style="font-size: 80px; text-align: center"}
+Human and pathogen transcriptomes
+:::
+
+<br>
+<br>
+
+:::{.fragment .fade-down}
+::: {style="font-size: 60px"}
+
+1. Quantifying gene expression changes
+
+1. Identifying novel virulence factors
+
+1. Predicting antibiotic resistance
+
+1. Unveiling host-pathogen immune interactions
+:::
+:::
+
+::: footer
+Lowe et al., 2017
+:::
+
+:::{.notes}
+A **primary aim** of this technology is to develop **individualised treatment**
+
+RNA-Seq of human pathogens has become an established method for
+:::
+
+
+##  {background-image="images/app001.jpg" background-size="cover" background-opacity="0.2"}
+
+::: {style="font-size: 80px; text-align: center"}
+Responses to environment
+:::
+
+<br>
+
+
+:::{.fragment .fade-down}
+::: {style="font-size: 60px"}
+
+1. Transcriptomics allows for the identification of genes and pathways that respond to biotic and abiotic environmental stresses
+
+1. The nontargeted nature of transcriptomics allows for the identification of novel transcriptional networks in complex systems
+
+1. [RNA-virus identification for pathogen containment]{.rn}
+:::
+:::
+
+::: footer
+Lowe et al., 2017
+:::
+
+
+##  {background-image="images/app001.jpg" background-size="cover" background-opacity="0.2"}
+
+::: {style="font-size: 80px; text-align: center"}
+Gene function annotation
+:::
+
+
+:::{.fragment .fade-down}
+::: {style="font-size: 60px"}
+
+1. All transcriptomic techniques have been particularly useful in identifying the functions of genes and identifying those responsible for particular phenotypes
+
+1. Assembly of RNA-Seq reads is not dependent on a reference genome, and it is so ideal for gene expression studies of nonmodel organisms
+
+1. RNA-Seq can also be used to identify previously unknown protein coding regions in existing sequenced genomes
+:::
+:::
+
+::: footer
+Lowe et al., 2017
+:::
+
+##  {background-image="images/app001.jpg" background-size="cover" background-opacity="0.2"}
+
+::: {style="font-size: 80px; text-align: center"}
+Noncoding RNA
+:::
+
+<br>
+
+:::{.fragment .fade-down}
+::: {style="font-size: 60px"}
+
+1. RNASeq is applicable to noncoding RNAs that are not translated into a protein, but instead, have direct functions
+
+1. Many of these noncoding RNAs affect disease states, including cancer, cardiovascular, and neurological diseases
+:::
+:::
+
+::: footer
+Lowe et al., 2017
+:::
+
+:::{.notes}
+Transcriptomics is most commonly applied to the mRNA content of the cell, However
+:::
+
+
+
+#  {background-image="images/qmark.jpg" background-size="cover" background-opacity="0.7"}
+
+
+::: {style="position: absolute; left: 980px; top: 450px;"}
+[Domande?]{style="font-size: 130px; font-weight: bold; color: white"}
+:::
+

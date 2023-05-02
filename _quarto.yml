@@ -1,0 +1,46 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "*.qmd"
+    - "!materials/workshop/"
+
+website:
+  title: "Introduzione ad R"
+  twitter-card:
+    card-style: summary_large_image
+    description: "Corso Revelo - Intro2R"
+  page-footer:
+    left: "This page was built with ❤️, [R](https://cran.r-project.org) and [Quarto](https://quarto.org/) by Marco Chiapello."
+  navbar:
+    background: "#447099"
+    logo: "materials/images/revelo.png"
+    left:
+      - text: Slides
+        menu: 
+          - href: materials/M1_intro.qmd
+            text: "Modulo I: Introduzione al corso"
+          - href: https://phd-toolbox-course.github.io/2022_PhD_Toolbox_course/M4_RicercaRiproducibile.html#1
+            text: "Modulo II: Ricerca Riproducibile"
+          - href: https://datacarpentry.org/spreadsheet-ecology-lesson/
+            text: "Modulo IV: L'organizzazione dei dati"
+          - href: https://datacarpentry.org/R-ecology-lesson/
+            text: "Modulo IV: Introduzione ad R"
+      - href: materials/risorse.qmd
+        text: "Materiale aggiuntivo"
+      - href: https://revelotraining.slack.com
+        text: "Slack chat"
+      - href: https://drive.google.com/drive/folders/1jLnkacbeItPUl6gIdWrf2EAQoaEBQM6R?usp=share_link
+        text: "Cartella condivisa"
+    right: 
+      - text: "Revelo DataLabs"
+        href: https://revelodatalabs.com
+      - icon: github
+        href: https://github.com/mchiapello/202305_REVELO_TorVergata_Intro2R
+
+format:
+  html:
+    theme: 
+      - litera
+      - style.css
+    toc: true
