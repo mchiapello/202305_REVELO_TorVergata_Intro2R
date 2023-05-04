@@ -161,7 +161,8 @@ plot(qrcode::qr_code("https://mchiapello.github.io/202305_REVELO_TorVergata_Intr
 12:30: Pausa pranzo            
 
 
-13:30: Intro2R       
+13:30: Cosa sono R e RStudio?
+14:00: Intro2R       
 14:45: Pausa                   
 15:00: Starting with data       
 16:30: Considerazioni finali   

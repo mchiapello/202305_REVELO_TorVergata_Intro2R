@@ -1,0 +1,108 @@
+---
+format: 
+  revealjs:
+    navigation-mode: vertical
+    slide-number: false
+    width: 1600
+    height: 900
+    logo: "images/revelo.png"
+    footer: "[home page](https://mchiapello.github.io/202304_REVELO_Torvergata/)"
+    css: ["css/theme.css", "css/custom.css"]
+    theme: simple
+    controls: true
+mainfont: "Times New Roman"
+editor: source
+filters:
+  - roughnotation
+editor_options: 
+  chunk_output_type: inline
+---
+
+##  {#TitleSlide data-menu-title="TitleSlide" background-image="images/bus.jpg" background-size="cover" background-opacity="0.3"}
+
+```{r setup, include=FALSE}
+library(fontawesome)
+library(tidyverse)
+library(quarto)
+library(gt)
+library(gtExtras)
+library(gtsummary)
+
+# font-family: 'Architects Daughter', cursive;
+# font-family: 'Julius Sans One', sans-serif;
+# font-family: 'Montserrat', san  s-serif;
+# font-family: 'Rock Salt', cursive;
+```
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Julius+Sans+One&family=Montserrat:wght@300&family=Rock+Salt&display=swap');
+</style>
+
+::: {style="position: absolute; left: 180px; top: 200px; height: 525px; width: 1500px; background-color: #69b1e9; padding: 20px; padding-left: 50px; border-radius: 5px;"}
+[Cosa sono R e RStudio?]{style="font-size: 120px; font-weight: bold; line-height: 1em; margin: 0px; font-family: 'Architects Daughter', cursive;"}
+
+[Introduzione all'utilizzo di R]{style="font-size: 40px;font-weight: bold;"}
+
+[Dipartimento di Biomedicina e Prevenzione]{style="font-size: 40px;font-weight: bold;"}
+
+<br> <br>
+
+[Marco Chiapello, Revelo Datalab]{style="font-size: 40px; font-weight: bold;"}
+
+[2023-05-11]{style="font-size: 30px;font-weight: bold;"}
+:::
+
+#  {background-image="images/bus.jpg" background-size="cover" background-opacity="0.2"}
+
+[What is R?]{.tit .p-span-center}
+
+<br>
+
+:::{.fragment .Tbox-orange}
+The term “R” is used to refer to both the programming language and the software that interprets the scripts written using it.
+:::
+
+#  {background-image="images/bus.jpg" background-size="cover" background-opacity="0.2"}
+
+[What is RStudio?]{.tit .p-span-center}
+
+<br>
+
+:::{.fragment .Tbox-orange}
+RStudio is a popular way to write R scripts and interact with the R software. To function correctly, RStudio needs R and therefore both need to be installed on your computer.
+
+:::
+#  {background-image="images/bus.jpg" background-size="cover" background-opacity="0.2"}
+
+[Why learn R?]{.tit .p-span-center}
+
+##  {background-image="images/bus.jpg" background-size="cover" background-opacity="0.2"}
+
+:::{.incremental .f60}
+- R does not involve lots of pointing and clicking, and that’s a good thing
+
+- R code is great for reproducibility
+
+- R is interdisciplinary and extensible
+
+- R works on data of all shapes and sizes
+
+- R produces high-quality graphics
+
+- R has a large and welcoming community
+
+- Not only is R free, but it is also open-source and cross-platform
+:::
+
+#  {background-image="images/bus.jpg" background-size="cover" background-opacity="0.2"}
+
+[Knowing your way around RStudio]{.tit .p-span-center}
+
+
+#  {background-image="images/bus.jpg" background-size="cover" background-opacity="0.2"}
+
+[Interacting with R]{.tit .p-span-center}
+
+#  {background-image="images/bus.jpg" background-size="cover" background-opacity="0.2"}
+
+[Seeking help]{.tit .p-span-center}

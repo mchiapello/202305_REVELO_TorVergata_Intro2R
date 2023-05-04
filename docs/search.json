@@ -131,5 +131,26 @@
     "title": "Introduzione ad R",
     "section": "Cheatsheets",
     "text": "Cheatsheets\n\nUNIX\ndplyr\nggplot2\nRmarkdown\nGit\nVersion control workflow"
+  },
+  {
+    "objectID": "materials/M3_introR.html#TitleSlide",
+    "href": "materials/M3_introR.html#TitleSlide",
+    "title": "Introduzione ad R",
+    "section": "",
+    "text": "Cosa sono R e RStudio?\nIntroduzione all’utilizzo di R\nDipartimento di Biomedicina e Prevenzione\n \nMarco Chiapello, Revelo Datalab\n2023-05-11"
+  },
+  {
+    "objectID": "materials/M3_introR.html#section-3",
+    "href": "materials/M3_introR.html#section-3",
+    "title": "Introduzione ad R",
+    "section": "",
+    "text": "R does not involve lots of pointing and clicking, and that’s a good thing\nR code is great for reproducibility\nR is interdisciplinary and extensible\nR works on data of all shapes and sizes\nR produces high-quality graphics\nR has a large and welcoming community\nNot only is R free, but it is also open-source and cross-platform"
+  },
+  {
+    "objectID": "materials/M3_introR.html#section-7",
+    "href": "materials/M3_introR.html#section-7",
+    "title": "Introduzione ad R",
+    "section": "",
+    "text": "DEMO\n\n\n\nhome page"
   }
 ]

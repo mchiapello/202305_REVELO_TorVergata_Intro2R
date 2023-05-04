@@ -23,9 +23,9 @@ website:
           - href: https://phd-toolbox-course.github.io/2022_PhD_Toolbox_course/M4_RicercaRiproducibile.html#1
             text: "Modulo II: Ricerca Riproducibile"
           - href: https://datacarpentry.org/spreadsheet-ecology-lesson/
-            text: "Modulo IV: L'organizzazione dei dati"
-          - href: https://datacarpentry.org/R-ecology-lesson/
-            text: "Modulo IV: Introduzione ad R"
+            text: "Modulo III: L'organizzazione dei dati"
+          - href: materials/M3_introR.qmd
+            text: "Modulo IV: Cosa sono R e RStudio?"
       - href: materials/risorse.qmd
         text: "Materiale aggiuntivo"
       - href: https://revelotraining.slack.com
