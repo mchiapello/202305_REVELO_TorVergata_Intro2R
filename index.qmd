@@ -30,11 +30,11 @@ Via Montpellier 1
 |9:30| [Introduzione al Corso](materials/M1_intro.qmd)   |
 |10:15| [Ricerca Riproducibile](https://phd-toolbox-course.github.io/2022_PhD_Toolbox_course/M4_RicercaRiproducibile.html#1)       |
 |10:45| Pausa                   |
-|11:00| Organizzazione dei dati]|
+|11:00| [Organizzazione dei dati](https://datacarpentry.org/spreadsheet-ecology-lesson/)|
 |12:30| Pausa pranzo            |
-|13:30| [Intro2R](materials/M2_Intro2R.qmd)
+|13:30| [Intro2R](materials/M3_introR.qmd)
 |14:45| Pausa                   |
-|15:00| Starting with data|
+|15:00| [Starting with data](https://datacarpentry.org/R-ecology-lesson/02-starting-with-data.html)|
 |16:30| Considerazioni finali   | 
 
 

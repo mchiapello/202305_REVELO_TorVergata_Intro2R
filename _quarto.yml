@@ -32,6 +32,18 @@ website:
         text: "Slack chat"
       - href: https://drive.google.com/drive/folders/1jLnkacbeItPUl6gIdWrf2EAQoaEBQM6R?usp=share_link
         text: "Cartella condivisa"
+      - text: Mappe concettuali
+        menu: 
+          - href: materials/images/R.pdf
+            text: "R"
+          - href: materials/images/variable.pdf
+            text: "Variabile in R"
+          - href: materials/images/vector.pdf
+            text: "Vettore in R"
+          - href: materials/images/Dataframe.pdf
+            text: "Dataframes"
+          - href: materials/images/tibble.pdf
+            text: "Tibble"
     right: 
       - text: "Revelo DataLabs"
         href: https://revelodatalabs.com
