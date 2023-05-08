@@ -44,13 +44,13 @@ Via Montpellier 1
 | Orario     | Tema                  |
 |------------|-----------------------|
 |9:30  | Riepilogo giorno precedente| 
-|9:45  | The dplyr package (parte I)|
+|9:45  | [The dplyr package (parte I)](https://datacarpentry.org/R-ecology-lesson/03-dplyr.html)|
 |10:45 | Pausa                  | 
-|11:00 | The dplyr package (parte II)|
+|11:00 | [The dplyr package (parte II)](https://datacarpentry.org/R-ecology-lesson/03-dplyr.html)|
 |12:30 | Pausa pranzo           | 
-|13:30 | The ggplot2 package (parte I)      |
+|13:30 | [The ggplot2 package (parte I)](https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html)      |
 |14:45 | Pausa                  | 
-|15:00 | The ggplot2 package (parte II)      |              
+|15:00 | [The ggplot2 package (parte II)](https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html)      |              
 |16:30 | Considerazioni finali  |
 
 

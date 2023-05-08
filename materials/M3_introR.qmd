@@ -96,13 +96,13 @@ RStudio is a popular way to write R scripts and interact with the R software. To
 
 #  {background-image="images/bus.jpg" background-size="cover" background-opacity="0.2"}
 
-[Knowing your way around RStudio]{.tit .p-span-center}
+[[Knowing your way around RStudio]{.tit .p-span-center}](https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html#knowing-your-way-around-rstudio)
 
 
 #  {background-image="images/bus.jpg" background-size="cover" background-opacity="0.2"}
 
-[Interacting with R]{.tit .p-span-center}
+[[Interacting with R]{.tit .p-span-center}](https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html#interacting-with-r)
 
 #  {background-image="images/bus.jpg" background-size="cover" background-opacity="0.2"}
 
-[Seeking help]{.tit .p-span-center}
+[[Seeking help]{.tit .p-span-center}](https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html#seeking-help)
