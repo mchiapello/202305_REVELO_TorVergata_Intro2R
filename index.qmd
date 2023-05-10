@@ -34,7 +34,7 @@ Via Montpellier 1
 |12:30| Pausa pranzo            |
 |13:30| [Intro2R](materials/M3_introR.qmd)
 |14:45| Pausa                   |
-|15:00| [Starting with data](https://datacarpentry.org/R-ecology-lesson/02-starting-with-data.html)|
+|15:00| [Starting with data](https://datacarpentry.org/R-ecology-lesson/01-intro-to-r.html#creating-objects-in-r)|
 |16:30| Considerazioni finali   | 
 
 
