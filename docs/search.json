@@ -32,7 +32,7 @@
     "href": "materials/M1_intro.html#section-6",
     "title": "Introduzione ad R",
     "section": "",
-    "text": "Agenda\n\n\nPrimo Giorno\n\n\nOrari\n9:30 : Introduzione al Corso\n10:00: Ricerca riproducibile\n10:45: Pausa\n11:00: Organizzazione dei dati\n12:30: Pausa pranzo\n13:30: Intro2R\n14:45: Pausa\n15:00: Starting with data\n16:30: Considerazioni finali\n\n\nSecondo Giorno\n\n\nOrari\n9:30 : Riepilogo del giorno precedente\n9:45 : The dplyr package (parte I)\n10:45: Pausa\n11:00: The dplyr package (parte II)\n12:30: Pausa pranzo\n13:30: The ggplot2 package (parte I)\n14:45: Pausa\n15:00: The ggplot2 package (parte II)\n16:30: Considerazioni finali"
+    "text": "Agenda\n\n\nPrimo Giorno\n\n\nOrari\n9:30 : Introduzione al Corso\n10:00: Ricerca riproducibile\n10:45: Pausa\n11:00: Organizzazione dei dati\n12:30: Pausa pranzo\n13:30: Cosa sono R e RStudio? 14:00: Intro2R\n14:45: Pausa\n15:00: Starting with data\n16:30: Considerazioni finali\n\n\nSecondo Giorno\n\n\nOrari\n9:30 : Riepilogo del giorno precedente\n9:45 : The dplyr package (parte I)\n10:45: Pausa\n11:00: The dplyr package (parte II)\n12:30: Pausa pranzo\n13:30: The ggplot2 package (parte I)\n14:45: Pausa\n15:00: The ggplot2 package (parte II)\n16:30: Considerazioni finali"
   },
   {
     "objectID": "materials/M1_intro.html#section-8",

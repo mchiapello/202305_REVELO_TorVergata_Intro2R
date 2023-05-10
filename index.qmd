@@ -30,7 +30,7 @@ Via Montpellier 1
 |9:30| [Introduzione al Corso](materials/M1_intro.qmd)   |
 |10:15| [Ricerca Riproducibile](https://phd-toolbox-course.github.io/2022_PhD_Toolbox_course/M4_RicercaRiproducibile.html#1)       |
 |10:45| Pausa                   |
-|11:00| [Organizzazione dei dati](https://datacarpentry.org/spreadsheet-ecology-lesson/)|
+|11:00| [Organizzazione dei dati](https://datacarpentry.org/spreadsheet-ecology-lesson/00-intro.html)|
 |12:30| Pausa pranzo            |
 |13:30| [Intro2R](materials/M3_introR.qmd)
 |14:45| Pausa                   |
@@ -44,13 +44,13 @@ Via Montpellier 1
 | Orario     | Tema                  |
 |------------|-----------------------|
 |9:30  | Riepilogo giorno precedente| 
-|9:45  | [The dplyr package (parte I)](https://datacarpentry.org/R-ecology-lesson/03-dplyr.html)|
+|9:45  | The dplyr package (parte I)|
 |10:45 | Pausa                  | 
-|11:00 | [The dplyr package (parte II)](https://datacarpentry.org/R-ecology-lesson/03-dplyr.html)|
+|11:00 | The dplyr package (parte II)|
 |12:30 | Pausa pranzo           | 
-|13:30 | [The ggplot2 package (parte I)](https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html)      |
+|13:30 | The ggplot2 package (parte I)      |
 |14:45 | Pausa                  | 
-|15:00 | [The ggplot2 package (parte II)](https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html)      |              
+|15:00 | The ggplot2 package (parte II)      |              
 |16:30 | Considerazioni finali  |
 
 
